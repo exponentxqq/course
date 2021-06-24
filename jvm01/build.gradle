@@ -1,0 +1,69 @@
+apply plugin: 'java-library'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'com.diffplug.gradle.spotless'
+apply plugin: 'jacoco'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+bootJar.enabled = false
+jar.enabled = true
+
+spotless {
+    java {
+
+        target project.fileTree(project.rootDir) {
+            include '**/*.java'
+            exclude '**/generated/**'
+            exclude 'generator/**'
+        }
+        googleJavaFormat()
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
+        property "sonar.projectName", "${sonarProjectName}"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply from: 'dependencies.gradle'
+
+test {
+    useJUnitPlatform()
+//    find missing tests
+    beforeTest { descriptor ->
+        logger.lifecycle("Running test: ${descriptor}")
+    }
+}
+
+task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
+    dependsOn(project.test, project.jacocoTestReport)
+    executionData project.tasks.withType(Test)
+
+    sourceDirectories.from = files(project.sourceSets.main.allSource.srcDirs)
+    classDirectories.from = files(project.sourceSets.main.output)
+
+    reports {
+        html.enabled = true
+        xml.enabled = true
+        csv.enabled = true
+    }
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    exclude "**/application*.properties"
+    exclude "**/logback-spring.xml"
+}
