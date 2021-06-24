@@ -1,0 +1,241 @@
+Classfile /develop/person/course/jvm01/src/main/java/com/course/jvm01/bytecode/Hello.class
+  Last modified Jun 24, 2021; size 1290 bytes
+  MD5 checksum 46baa89e3885850af58f0a840445b1e3
+  Compiled from "Hello.java"
+public class com.course.jvm01.bytecode.Hello
+  minor version: 0
+  major version: 55
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #7                          // com/course/jvm01/bytecode/Hello
+  super_class: #8                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 2, attributes: 3
+Constant pool:
+   #1 = Methodref          #8.#37         // java/lang/Object."<init>":()V
+   #2 = Long               2l
+   #4 = String             #38            // ccc
+   #5 = Methodref          #33.#39        // java/lang/String.valueOf:(I)Ljava/lang/String;
+   #6 = InvokeDynamic      #0:#43         // #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+   #7 = Class              #44            // com/course/jvm01/bytecode/Hello
+   #8 = Class              #45            // java/lang/Object
+   #9 = Utf8               <init>
+  #10 = Utf8               ()V
+  #11 = Utf8               Code
+  #12 = Utf8               LineNumberTable
+  #13 = Utf8               LocalVariableTable
+  #14 = Utf8               this
+  #15 = Utf8               Lcom/course/jvm01/bytecode/Hello;
+  #16 = Utf8               main
+  #17 = Utf8               ([Ljava/lang/String;)V
+  #18 = Utf8               i
+  #19 = Utf8               I
+  #20 = Utf8               args
+  #21 = Utf8               [Ljava/lang/String;
+  #22 = Utf8               a
+  #23 = Utf8               b
+  #24 = Utf8               J
+  #25 = Utf8               c
+  #26 = Utf8               Ljava/lang/String;
+  #27 = Utf8               count
+  #28 = Utf8               nums
+  #29 = Utf8               [I
+  #30 = Utf8               result
+  #31 = Utf8               StackMapTable
+  #32 = Class              #21            // "[Ljava/lang/String;"
+  #33 = Class              #46            // java/lang/String
+  #34 = Class              #29            // "[I"
+  #35 = Utf8               SourceFile
+  #36 = Utf8               Hello.java
+  #37 = NameAndType        #9:#10         // "<init>":()V
+  #38 = Utf8               ccc
+  #39 = NameAndType        #47:#48        // valueOf:(I)Ljava/lang/String;
+  #40 = Utf8               BootstrapMethods
+  #41 = MethodHandle       6:#49          // REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #42 = String             #50            // \u0001\u0001
+  #43 = NameAndType        #51:#52        // makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #44 = Utf8               com/course/jvm01/bytecode/Hello
+  #45 = Utf8               java/lang/Object
+  #46 = Utf8               java/lang/String
+  #47 = Utf8               valueOf
+  #48 = Utf8               (I)Ljava/lang/String;
+  #49 = Methodref          #53.#54        // java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #50 = Utf8               \u0001\u0001
+  #51 = Utf8               makeConcatWithConstants
+  #52 = Utf8               (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+  #53 = Class              #55            // java/lang/invoke/StringConcatFactory
+  #54 = NameAndType        #51:#59        // makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #55 = Utf8               java/lang/invoke/StringConcatFactory
+  #56 = Class              #61            // java/lang/invoke/MethodHandles$Lookup
+  #57 = Utf8               Lookup
+  #58 = Utf8               InnerClasses
+  #59 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #60 = Class              #62            // java/lang/invoke/MethodHandles
+  #61 = Utf8               java/lang/invoke/MethodHandles$Lookup
+  #62 = Utf8               java/lang/invoke/MethodHandles
+{
+  public com.course.jvm01.bytecode.Hello();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/course/jvm01/bytecode/Hello;
+
+  //////////////////////////////////////////////////////////////////////
+  // 以下用{}表示栈，用[]表示变量表
+  //  0: iconst_1                   将int值1压入栈顶  {1} [#this]
+  //  1: istore_1                   从栈顶取出1放到变量表1，赋值给a  {} [#this, 1]
+  //  2: ldc2_w        #2           将long型常量值从常量池中推送至栈顶   {#2} [#this, 1]
+  //  5: lstore_2                   从栈顶取出long类型2放到变量表2，赋值给b   {} [#this, 1, #2]
+  //  6: ldc           #4           将字符串引用压入栈顶    {#4} [#this, 1, #2]
+  //  8: astore        4            从栈顶取出值放到变量表4  {}  [#this, 1, #2, , #4]
+  // 10: bipush        8            将int值8压入栈顶        {8} [#this, 1, #2, #4]
+  // 12: istore        5            从栈顶取出8放到变量表5,赋值给count   {} [#this, 1, #2, , #4, 8]
+  // 14: iconst_2                   将int值2压入栈顶(数组长度)  {2} [#this, 1, #2, , #4, 8]
+  // 15: newarray      int          取出栈顶的值作为数组长度创建数组并将数组引用压入栈顶    {#a} [#this, 1, #2, , #4, 8]
+  // 17: dup                        复制栈顶的值，并再压入栈顶  {#a, #a} [#this, 1, #2, , #4, 8]
+  // 18: iconst_0                   将int值0压入栈顶(索引0)   {0, #a, #a} [#this, 1, #2, , #4, 8]
+  // 19: bipush        111          将int值111压入栈顶(索引0位置的值) {111, 0, #a, #a} [#this, 1, #2, , #4, 8]
+  // 21: iastore                    将栈顶位置的值存入数组指定位置   {#a} [#this, 1, #2, , #4, 8]
+  // 22: dup                        复制栈顶的值，并再压入栈顶  {#a, #a} [#this, 1, #2, , #4, 8]
+  // 23: iconst_1                   同18   {1, #a, #a} [#this, 1, #2, , #4, 8]
+  // 24: sipush        222          同19   {222, 1, #a, #a} [#this, 1, #2, , #4, 8]
+  // 27: iastore                    同21   {#a} [#this, 1, #2, , #4, 8]
+  // 28: astore        6            从栈顶取出值放到变量表6，赋值给nums    {} [#this, 1, #2, , #4, 8, #a]
+  // 30: iload_1                    从变量表1中取值压入栈顶      {1} [#this, 1, #2, , #4, 8, #a]
+  // 31: invokestatic  #5           栈顶值作为参数，调用了String.valueOf静态方法，返回值压会栈顶 {"1"} [#this, 1, #2, , #4, 8, #a]
+  // 34: astore        7            从栈顶取值放到变量表7 {} [#this, 1, #2, , #4, 8, #a, "1"]
+  // 36: iconst_0                   将int值0压入栈顶    {0} [#this, 1, #2, , #4, 8, #a, "1"]
+  // 37: istore        8            从栈顶取值放入变量表8，赋值给i   {} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 39: iload         8            将变量表8位置的值压入栈顶   {0} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 41: iload         5            将变量表5位置的值压入栈顶   {8, 0} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 43: if_icmpge     57           比较栈顶的两个int值(i和count比较)，不满足条件直接跳转到57位指令  {} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 46: iload_1                    将变量表1位置的值压入栈顶  {1} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 47: iload         8            将变量表8位置的值压入栈顶  {0, 1} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 49: iadd                       将栈顶的两个int值相加并将结果压入栈顶 {1} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 50: istore_1                   将栈顶的值(相加后的)取出放到变量表1  {} [#this, 1, #2, , #4, 8, #a, "1", 0]
+  // 51: iinc          8, 1         指定变量表8位置的值加1  {} [#this, 1, #2, , #4, 8, #a, "1", 1]
+  // 54: goto          39           回到39位指令   {} [#this, 1, #2, , #4, 8, #a, "1", 1] 循环结束后 [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 57: aload         6            将变量表6位置的值压入栈顶  {#a} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 59: iconst_1                   将int值1压入栈顶    {1, #a} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 60: iaload                     获取数组索引1位置的值，并压入栈顶 {nums[1]} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 61: aload         6            同57 {#a, nums[1]} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 63: iconst_0                   同59 {0, #a, nums[1]} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 64: iaload                     同60 {nums[0], nums[1]} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 65: isub                       将栈顶的两个值相减并将结果压入栈顶 {111} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 66: iload_1                    将变量表1位置的值压入栈顶   {29, 111} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 67: isub                       将栈顶的两个值相减并将结果压入栈顶 {82} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 68: i2l                        将栈顶的int值转为long值   {82} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 69: lload_2                    将变量表2位置的值压入栈顶   {2, 82} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 70: lcmp                       比较栈顶的两个long值，并将比较的结果压入栈顶 {1} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 71: ifle          85           判断栈顶的值，不满足条件直接跳到85位指令 {} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 74: aload         7            将变量表7位置的值压入栈顶 {"1"} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 76: aload         4            将变量表4位置的值压入栈顶 {#4(ccc引用), "1"} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 78: invokedynamic #6,  0       调用字符串相加的方法，并将结果压入栈顶 {"1ccc"} [#this, 29, #2, , #4, 8, #a, "1", 8]
+  // 83: astore        7            取出栈顶的值放到变量表7,赋值给result {} [#this, 29, #2, , #4, 8, #a, "1ccc", 8]
+  // 85: return                     结束
+  // 总结：
+  //    stack=4, locals=9, args_size=1
+  //    以上全程，栈长度最长的时候为4,本地变量表最长为9
+  //    变量表3一直没有用上，应该就是main方法的参数args
+  //////////////////////////////////////////////////////////////////////
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=4, locals=9, args_size=1
+         0: iconst_1
+         1: istore_1
+         2: ldc2_w        #2                  // long 2l
+         5: lstore_2
+         6: ldc           #4                  // String ccc
+         8: astore        4
+        10: bipush        8
+        12: istore        5
+        14: iconst_2
+        15: newarray       int
+        17: dup
+        18: iconst_0
+        19: bipush        111
+        21: iastore
+        22: dup
+        23: iconst_1
+        24: sipush        222
+        27: iastore
+        28: astore        6
+        30: iload_1
+        31: invokestatic  #5                  // Method java/lang/String.valueOf:(I)Ljava/lang/String;
+        34: astore        7
+        36: iconst_0
+        37: istore        8
+        39: iload         8
+        41: iload         5
+        43: if_icmpge     57
+        46: iload_1
+        47: iload         8
+        49: iadd
+        50: istore_1
+        51: iinc          8, 1
+        54: goto          39
+        57: aload         6
+        59: iconst_1
+        60: iaload
+        61: aload         6
+        63: iconst_0
+        64: iaload
+        65: isub
+        66: iload_1
+        67: isub
+        68: i2l
+        69: lload_2
+        70: lcmp
+        71: ifle          85
+        74: aload         7
+        76: aload         4
+        78: invokedynamic #6,  0              // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+        83: astore        7
+        85: return
+      LineNumberTable:
+        line 7: 0
+        line 8: 2
+        line 9: 6
+        line 10: 10
+        line 11: 14
+        line 12: 30
+        line 13: 36
+        line 14: 46
+        line 13: 51
+        line 17: 57
+        line 18: 74
+        line 20: 85
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           39      18     8     i   I
+            0      86     0  args   [Ljava/lang/String;
+            2      84     1     a   I
+            6      80     2     b   J
+           10      76     4     c   Ljava/lang/String;
+           14      72     5 count   I
+           30      56     6  nums   [I
+           36      50     7 result   Ljava/lang/String;
+      StackMapTable: number_of_entries = 3
+        frame_type = 255 /* full_frame */
+          offset_delta = 39
+          locals = [ class "[Ljava/lang/String;", int, long, class java/lang/String, int, class "[I", class java/lang/String, int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 17
+        frame_type = 27 /* same */
+}
+SourceFile: "Hello.java"
+InnerClasses:
+  public static final #57= #56 of #60;    // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+BootstrapMethods:
+  0: #41 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #42 \u0001\u0001
