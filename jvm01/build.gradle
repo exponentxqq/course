@@ -16,17 +16,8 @@ spotless {
 
         target project.fileTree(project.rootDir) {
             include '**/*.java'
-            exclude '**/generated/**'
-            exclude 'generator/**'
         }
         googleJavaFormat()
-    }
-}
-
-sonarqube {
-    properties {
-        property "sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
-        property "sonar.projectName", "${sonarProjectName}"
     }
 }
 

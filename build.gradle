@@ -1,8 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.2.9.RELEASE' apply(false)
     id "com.diffplug.gradle.spotless" version "3.27.1"
-    id 'maven-publish'
-    id "org.sonarqube" version "3.0"
 }
 
 apply plugin: 'java-library'
@@ -10,8 +8,6 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'com.diffplug.gradle.spotless'
 apply plugin: 'jacoco'
-apply plugin: 'maven-publish'
-
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -27,13 +23,6 @@ spotless {
             include '**/*.java'
         }
         googleJavaFormat()
-    }
-}
-
-sonarqube {
-    properties {
-        property "sonar.coverage.jacoco.xmlReportPaths", "${rootProject.buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
-        property "sonar.projectName", "${sonarProjectName}"
     }
 }
 
