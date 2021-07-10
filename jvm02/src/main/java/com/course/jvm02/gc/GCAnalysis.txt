@@ -1,0 +1,136 @@
+# 串行GC
+## java -XX:+UseSerialGC -Xmx128M -Xms128M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 9~12ms
+GC：20~35次 8～27ms
+full GC：12~20次  11~37ms
+object count: 0 (OOM)
+
+## java -XX:+UseSerialGC -Xmx256M -Xms256M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 12~35ms
+GC: 19~26次
+full GC: 14~18次 20～69ms
+object count: 4400
+
+## java -XX:+UseSerialGC -Xmx512M -Xms512M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 11~66ms
+GC: 12~16次
+full GC: 3~4次 37~65ms
+object count: 7700~9100
+
+## java -XX:+UseSerialGC -Xmx1G -Xms1G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 39~93ms
+GC: 5~7次
+full GC: 0次
+object count: 8500~10500
+
+## java -XX:+UseSerialGC -Xmx2G -Xms2G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 75~140ms
+GC: 3~4次
+full GC: 0
+object count: 7700~10400
+
+
+
+
+# 并行GC
+## java -XX:+UseParallelGC -Xmx128M -Xms128M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 8~10ms
+GC: 21~30次
+full GC: 12~22次 13~50ms
+object count: 0 (OOM)
+
+##java -XX:+UseParallelGC -Xmx256M -Xms256M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 7~13ms
+GC: 18~25次
+full GC: 10~14次 25~86ms
+object count: 3100~3500
+
+##java -XX:+UseParallelGC -Xmx512M -Xms512M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 10~30ms
+GC: 17~21次
+full GC: 2~3次 44~180ms
+object count: 6200~8400
+
+##java -XX:+UseParallelGC -Xmx1G -Xms1G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 13~45ms
+GC: 12~13次
+full GC: 1次 140～220ms
+object count: 10000~10500
+
+##java -XX:+UseParallelGC -Xmx2G -Xms2G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 28~60ms
+GC: 4~5次
+full GC: 0
+object count: 10200~14200
+
+
+# CMS GC
+##java -XX:+UseConcMarkSweepGC -Xmx128M -Xms128M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 9~30ms
+GC: 24~42次
+full GC: 11~23次 10～60ms
+object count: 0 (OOM)
+
+##java -XX:+UseConcMarkSweepGC -Xmx256M -Xms256M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 12~21ms
+GC: 24~27次
+full GC: 9~10次 30~80ms
+object count: 4200~4700
+
+##java -XX:+UseConcMarkSweepGC -Xmx512M -Xms512M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 14~70ms
+GC: 17~22次
+full GC: 0~4次 39～92ms
+object count: 7100~9800
+
+##java -XX:+UseConcMarkSweepGC -Xmx1G -Xms1G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 21~118ms
+GC: 7~11次
+full GC: 0
+object count: 9800~11500
+
+##java -XX:+UseConcMarkSweepGC -Xmx2G -Xms2G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 25~127ms
+GC: 7~8次
+full GC: 0
+object count: 9500~10300
+
+
+
+# G1 GC
+##java -XX:+UseG1GC -Xmx128M -Xms128M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 10~19ms
+GC: 48~66次
+full GC: 8~16次 16~51ms
+object count: 0 (OOM)
+
+##java -XX:+UseG1GC -Xmx256M -Xms256M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 10~32ms
+GC: 38~47次
+full GC: 1~3次 25～27ms
+object count: 3000~3400
+
+##java -XX:+UseG1GC -Xmx512M -Xms512M -XX:+PrintGCDetails GCLogAnalysis
+young GC: 12~40ms
+GC: 26~29次
+full GC: 0
+object count: 4800~6200
+
+##java -XX:+UseG1GC -Xmx1G -Xms1G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 14~41ms
+GC: 14~21次
+full GC: 0
+object count: 7200~8300
+
+##java -XX:+UseG1GC -Xmx2G -Xms2G -XX:+PrintGCDetails GCLogAnalysis
+young GC: 16~43ms
+GC: 10~15次
+full GC: 0
+object count: 9100~11100
+
+# 总结
+1 从 128m到256m 由于对大小小于创建对象占用的大小，导致oom，此种情况下；内存越小不管是yong gc 和 full gc次数会频繁触发，导致大量时间在做gc；
+2 同等内存大小情况下串行gc 时间几乎是并行gc的二倍；内存越大越明显
+3 G1的GC时间更稳定，内存越大的情况下G1回收的效率越高，gc时间比其他回收器时间短、内存越大g1效果越好；
+4 可以看到内存越大的情况下g1的垃圾回收基本优于串行、并行以及CMS，大内存下吞吐量稍逊CMS。
+5 cms 于 吞吐量相对于其他回收器明显存在劣势，回收时间不太稳定；

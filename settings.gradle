@@ -1,2 +1,3 @@
 rootProject.name = 'course'
 include 'jvm01'
+include 'jvm02'

@@ -1,65 +1,78 @@
+import javax.tools.JavaCompiler
+
 plugins {
-    id 'org.springframework.boot' version '2.2.9.RELEASE' apply(false)
     id "com.diffplug.gradle.spotless" version "3.27.1"
 }
 
-apply plugin: 'java-library'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'com.diffplug.gradle.spotless'
-apply plugin: 'jacoco'
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 
-bootJar.enabled = false
-jar.enabled = true
+    apply plugin: 'java-library'
+    apply plugin: 'idea'
+    apply plugin: 'com.diffplug.gradle.spotless'
+    apply plugin: 'jacoco'
 
-spotless {
-    java {
-
-        target project.fileTree(project.rootDir) {
-            include '**/*.java'
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
         }
-        googleJavaFormat()
     }
 }
 
-repositories {
-    mavenLocal()
-    mavenCentral()
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
 }
 
-apply from: 'dependencies.gradle'
+subprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
 
-test {
-    useJUnitPlatform()
-//    find missing tests
-    beforeTest { descriptor ->
-        logger.lifecycle("Running test: ${descriptor}")
+    dependencies {
+    }
+}
+
+
+
+def reportSubprojects() {
+    return subprojects.findAll {
+        (new File("${it.projectDir}/src/test/java").isDirectory())
+    }
+}
+
+task jacocoMergeAll(type: JacocoMerge) {
+    dependsOn(subprojects.test, subprojects.jacocoTestReport)
+    reportSubprojects().each { subproject ->
+        executionData subproject.tasks.withType(Test)
     }
 }
 
 task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
-    dependsOn(project.test, project.jacocoTestReport)
-    executionData project.tasks.withType(Test)
-
-    sourceDirectories.from = files(project.sourceSets.main.allSource.srcDirs)
-    classDirectories.from = files(project.sourceSets.main.output)
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: '**/generated/**')
+        }))
+    }
+    description = 'Generates an aggregate report from all subprojects'
+    dependsOn(jacocoMergeAll)
+    sourceDirectories.from = files(reportSubprojects().sourceSets.main.allSource.srcDirs)
+    classDirectories.from = files(reportSubprojects().sourceSets.main.output)
+    executionData.from = files("${buildDir}/jacoco/jacocoMergeAll.exec")
 
     reports {
         html.enabled = true
         xml.enabled = true
         csv.enabled = true
     }
-}
-
-java {
-    withSourcesJar()
-}
-
-jar {
-    exclude "**/application*.properties"
-    exclude "**/logback-spring.xml"
 }
