@@ -40,10 +40,18 @@ subprojects {
     }
 
     dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.12'
+        annotationProcessor 'org.projectlombok:lombok:1.18.12'
+        implementation 'ch.qos.logback:logback-classic:1.2.3'
     }
 }
 
-
+spotless {
+    java {
+        target('**/*.java')
+        googleJavaFormat()
+    }
+}
 
 def reportSubprojects() {
     return subprojects.findAll {
