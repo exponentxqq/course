@@ -32,8 +32,7 @@ public abstract class BaseOutboundHandler implements OutboundHandler {
     int cores = Runtime.getRuntime().availableProcessors();
     long keepAliveTime = 1000;
     int queueSize = 2048;
-    RejectedExecutionHandler handler =
-        new ThreadPoolExecutor.CallerRunsPolicy();
+    RejectedExecutionHandler handler = new ThreadPoolExecutor.CallerRunsPolicy();
     proxyService =
         new ThreadPoolExecutor(
             cores,
