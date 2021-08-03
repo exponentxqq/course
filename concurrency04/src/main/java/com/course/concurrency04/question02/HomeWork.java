@@ -1,4 +1,4 @@
-package com.course.concurrency04.thread;
+package com.course.concurrency04.question02;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BrokenBarrierException;
