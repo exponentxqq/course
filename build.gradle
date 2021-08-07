@@ -5,7 +5,7 @@ plugins {
 }
 
 
-allprojects {
+allprojects() {
     repositories {
         mavenLocal()
         mavenCentral()
@@ -33,7 +33,7 @@ configurations {
     }
 }
 
-subprojects {
+subprojects() {
     repositories {
         mavenLocal()
         mavenCentral()

@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.course.spring05.starter.Spring05StarterAutoConfiguration
